@@ -1,0 +1,9 @@
+1. Tạo package.json trong root
+    - npm init -y
+
+2. Cài các thư viện sau
+    - npm i express cookie-parser mailtrap bcryptjs dotenv jsonwebtoken mongoose crypto
+
+3. Cài nodemon
+
+4. Thêm "type":"module" vào package.json để có thể viết dạng ES Module
