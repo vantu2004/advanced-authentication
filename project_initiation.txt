@@ -1,9 +1,35 @@
-1. Tạo package.json trong root
+1. Backend
+    1.1. Tạo package.json trong root
     - npm init -y
 
-2. Cài các thư viện sau
-    - npm i express cookie-parser mailtrap bcryptjs dotenv jsonwebtoken mongoose crypto
+    1.2. Cài các thư viện sau
+        - npm i express cookie-parser mailtrap bcryptjs dotenv jsonwebtoken mongoose crypto
 
-3. Cài nodemon
+    1.3. Cài nodemon
 
-4. Thêm "type":"module" vào package.json để có thể viết dạng ES Module
+    1.4. Thêm "type":"module" vào package.json để có thể viết dạng ES Module
+
+2. Frontend
+    2.1. Tạo project react/vite
+    -   npm create vite@latest .
+
+    2.2. Cài dependencies
+    -   npm install
+
+    2.3. Cài tailwind css
+    -   npm install tailwindcss @tailwindcss/vite
+
+    2.4. Cài thư viện icon
+    -   npm i lucide-react
+
+    2.5. Cài thư viện giúp điều hướng ko reload page
+    -   npm react-router-dom
+
+    2.6. Cài thư viện animation
+    -   npm i framer-motion
+
+    2.7. Cài zustand, axios
+    -   npm i zustand, axios
+
+    2.8. Cài thư viện thông báo
+    -   npm i react-hot-toast
