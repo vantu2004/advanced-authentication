@@ -48,7 +48,7 @@ if (process.env.NODE_ENV === "production") {
   // Regex ^(?!\/api\/).* = mọi đường dẫn KHÔNG khởi đầu bằng "/api/"
   app.get(/^(?!\/api\/).*/, (req, res) => {
     // Trả về index.html để client-side router render trang tương ứng
-    res.sendFile(path.resolve(__dirname, "/frontend", "dist", "index.html"));
+    res.sendFile(path.resolve(__dirname, "frontend", "dist", "index.html"));
   });
 }
 
