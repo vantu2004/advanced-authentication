@@ -5,12 +5,16 @@ import { connectDb } from "./db/connectDb.js";
 import authRoutes from "./routes/auth.route.js";
 import cookieParser from "cookie-parser";
 import cors from "cors";
+import path from "path";
 
 dotenv.config();
 
 const app = express();
 
 const PORT = process.env.PORT || 5000;
+
+// path.resolve() <=> process.cwd(), khi chạy "npm run start" -> npm tìm vị trí file package.json -> trả về path nây
+const __dirname = path.resolve();
 
 app.use(
   cors({
@@ -33,6 +37,20 @@ app.get("/", (req, res) => {
 });
 
 app.use("/api/auth", authRoutes);
+
+if (process.env.NODE_ENV === "production") {
+  // Serve toàn bộ file tĩnh (JS/CSS/assets) đã build bởi Vite tại frontend/dist
+  app.use(express.static(path.join(__dirname, "/frontend/dist")));
+
+  // vì path-to-regex là 8.2.0 nên "*" hay "/*" ko còn hợp lệ (dùng lệnh npm ls express path-to-regexp) để check phiên bản
+
+  // Catch-all cho SPA routes NHƯNG loại trừ các route bắt đầu bằng /api/
+  // Regex ^(?!\/api\/).* = mọi đường dẫn KHÔNG khởi đầu bằng "/api/"
+  app.get(/^(?!\/api\/).*/, (req, res) => {
+    // Trả về index.html để client-side router render trang tương ứng
+    res.sendFile(path.resolve(__dirname, "/frontend", "dist", "index.html"));
+  });
+}
 
 app.listen(PORT, () => {
   connectDb();

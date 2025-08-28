@@ -12,6 +12,9 @@
     1.5. Cài gói cấu hình để BE cho phép truy cập từ nhiều nguồn
     -   npm i cors
 
+    1.6. Cài cross-env giúp thiết lập biến môi trường (environment variables) theo cách cross-platform
+    -   npm i -D cross-env
+
 2. Frontend
     2.1. Tạo project react/vite
     -   npm create vite@latest .
