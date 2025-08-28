@@ -32,10 +32,6 @@ app.use(express.json());
 // Giúp đọc cookie dễ dàng qua req.cookies["token"] thay vì phải tự parse header
 app.use(cookieParser());
 
-app.get("/", (req, res) => {
-  res.send("Hello World!");
-});
-
 app.use("/api/auth", authRoutes);
 
 if (process.env.NODE_ENV === "production") {
