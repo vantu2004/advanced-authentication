@@ -38,6 +38,10 @@ export const login = async (req, res) => {
       throw new Error("User not found");
     }
 
+    if (!user.isVerified) {
+      throw new Error("Email is not verified");
+    }
+
     const isMatch = await bcryptjs.compare(password, user.password);
     if (!isMatch) {
       throw new Error("Invalid credentials");

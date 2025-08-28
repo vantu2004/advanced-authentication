@@ -3,11 +3,14 @@
     - npm init -y
 
     1.2. Cài các thư viện sau
-        - npm i express cookie-parser mailtrap bcryptjs dotenv jsonwebtoken mongoose crypto
+    - npm i express cookie-parser mailtrap bcryptjs dotenv jsonwebtoken mongoose crypto
 
     1.3. Cài nodemon
 
     1.4. Thêm "type":"module" vào package.json để có thể viết dạng ES Module
+
+    1.5. Cài gói cấu hình để BE cho phép truy cập từ nhiều nguồn
+    -   npm i cors
 
 2. Frontend
     2.1. Tạo project react/vite

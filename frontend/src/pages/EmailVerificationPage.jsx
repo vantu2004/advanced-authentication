@@ -1,6 +1,8 @@
 import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
+import useAuthStore from "../store/useAuthStore";
+import toast from "react-hot-toast";
 
 const EmailVerificationPage = () => {
   // State lưu 6 ký tự của mã code, khởi tạo là ["", "", "", "", "", ""]
@@ -12,8 +14,7 @@ const EmailVerificationPage = () => {
   // Hook dùng để điều hướng sau khi verify thành công
   const navigate = useNavigate();
 
-  // Biến trạng thái loading (ở đây tạm thời luôn false)
-  const isLoading = false;
+  const { isLoading, error, verifyEmail } = useAuthStore();
 
   // Xử lý khi người dùng nhập vào 1 ô input
   const handleChange = (index, value) => {
@@ -53,7 +54,13 @@ const EmailVerificationPage = () => {
   // Hàm submit form (chưa viết logic verify, hiện tại chỉ preventDefault)
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // TODO: gọi API verify code ở đây
+    try {
+      await verifyEmail(code.join(""));
+      navigate("/");
+      toast.success("Verification successful!");
+    } catch (error) {
+      console.error("Verification failed:", error);
+    }
   };
 
   // Khi tất cả 6 ô đều đã nhập thì tự động submit
@@ -95,6 +102,8 @@ const EmailVerificationPage = () => {
               />
             ))}
           </div>
+
+          {error && <p className="text-red-500 text-center">{error}</p>}
 
           {/* Nút submit */}
           <motion.button

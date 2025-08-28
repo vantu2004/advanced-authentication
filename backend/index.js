@@ -4,12 +4,21 @@ import dotenv from "dotenv";
 import { connectDb } from "./db/connectDb.js";
 import authRoutes from "./routes/auth.route.js";
 import cookieParser from "cookie-parser";
+import cors from "cors";
 
 dotenv.config();
 
 const app = express();
 
 const PORT = process.env.PORT || 5000;
+
+app.use(
+  cors({
+    origin: "http://localhost:5173",
+    // mặc định CORS ko cho phép gửi kèm cookie, session nên phải bật true
+    credentials: true,
+  })
+);
 
 // Middleware để parse body dạng JSON từ request
 // Ví dụ: client gửi {"email":"abc@gmail.com"} thì có thể đọc qua req.body.email
